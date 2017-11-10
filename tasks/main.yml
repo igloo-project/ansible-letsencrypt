@@ -1,12 +1,5 @@
 ---
 
-- name: package
-  package:
-    name: python-certbot-apache
-
-- name: letsencrypt · renew cron
-  template:
-    src: letsencrypt-renew-cron.j2
-    dest: "{{ _letsencrypt_renew_cron_target }}/letsencrypt"
-  become: yes
+- import_tasks: letsencrypt.yml
+  become: true
   become_user: root
