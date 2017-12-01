@@ -2,6 +2,10 @@
 
 - name: package
   package:
+    name: cronie
+
+- name: package
+  package:
     name: python-certbot-apache
 
 - name: letsencrypt · renew cron
