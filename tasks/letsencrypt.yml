@@ -2,15 +2,7 @@
 
 - name: package
   package:
-    name: cronie
-
-- name: package
-  package:
-    name: python-certbot-apache
-
-- name: package
-  package:
-    name: python-certbot-nginx
+    name: "{{ _letsencrypt_packages | distro(vars) }}"
 
 - name: letsencrypt · renew cron
   template:

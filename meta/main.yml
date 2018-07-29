@@ -8,9 +8,14 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+    - name: Debian
+      versions:
+        - stretch
   galaxy_tags:
     - ssl
     - httpd
     - letsencrypt
 dependencies:
-  - geerlingguy.repo-epel
+  - role: geerlingguy.repo-epel
+    when: ansible_os_family == 'RedHat'
+  - role: powo.utils
