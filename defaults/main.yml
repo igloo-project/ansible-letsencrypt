@@ -5,11 +5,16 @@ _letsencrypt_packages:
   RedHat:
     - cronie
     - certbot
-    - python-certbot-apache
-    - python-certbot-nginx
+    - "{{ _python_prefix | distro(vars) }}-certbot-apache"
+    - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
   Debian:
     - cron
     - certbot
     - python-certbot-apache
     # broken; package cannot be installed without nginx
     # - python-certbot-nginx
+
+_python_prefix:
+  CentOS_8: python3
+  RedHat_8: python3
+  RedHat: python
