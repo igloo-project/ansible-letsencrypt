@@ -27,3 +27,4 @@ _python_prefix:
   CentOS_8: python3
   RedHat_8: python3
   RedHat: python
+  Debian_9: python
