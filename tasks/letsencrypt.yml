@@ -2,7 +2,7 @@
 
 - name: package
   package:
-    name: "{{ _letsencrypt_packages | distro(vars) }}"
+    name: "{{ _letsencrypt_packages }}"
 
 - name: letsencrypt · renew cron
   template:
