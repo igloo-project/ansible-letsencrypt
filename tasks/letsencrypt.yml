@@ -4,6 +4,13 @@
   package:
     name: "{{ _letsencrypt_packages }}"
 
+- name: letsencrypt · renew script
+  template:
+    src: letsencrypt-renew-script.j2
+    dest: "{{ _letsencrypt_renew_cron_script }}"
+    mode: 755
+  when: _letsencrypt_renew_cron_script != 'None'
+
 - name: letsencrypt · renew cron
   template:
     src: letsencrypt-renew-cron.j2

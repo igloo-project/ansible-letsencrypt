@@ -1,0 +1,4 @@
+#!/bin/bash
+{% if _letsencrypt_renew_cron_script_pre is defined %}{{ _letsencrypt_renew_cron_script_pre }}{% endif %}
+certbot renew --quiet
+{% if _letsencrypt_renew_cron_script_post is defined %}{{ _letsencrypt_renew_cron_script_post }}{% endif %}

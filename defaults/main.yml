@@ -2,17 +2,19 @@ _letsencrypt_skip_apache: "{{ letsencrypt_skip_apache | default(False) }}"
 _letsencrypt_skip_nginx: "{{ letsencrypt_skip_nginx | default(False) }}"
 _letsencrypt_renew_email: "{{ letsencrypt_renew_email }}"
 _letsencrypt_renew_cron_expression: "{{ letsencrypt_renew_cron_expression | default('0 8,20 * * *') }}"
+
 _letsencrypt_renew_cron_target: "{{ letsencrypt_renew_cron_target | default('/etc/cron.d') }}"
+_letsencrypt_renew_cron_script: "{{ letsencrypt_renew_cron_script | default('None') }}"
+_letsencrypt_renew_cron_script_pre: "{{ letsencrypt_renew_cron_script_pre }}"
+_letsencrypt_renew_cron_script_post: "{{ letsencrypt_renew_cron_script_post }}"
 
 # conditionaly include apache or nginx plugin
-_letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages | distro(vars)) }}"
+_letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages) }}"
 
 _letsencrypt_apache_packages:
   - "{{ _python_prefix | distro(vars) }}-certbot-apache"
 _letsencrypt_nginx_packages:
-  RedHat:
-    - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
-  Debian: []
+  - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
 _letsencrypt_main_packages:
   RedHat:
     - cronie
