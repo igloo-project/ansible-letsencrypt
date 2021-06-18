@@ -5,14 +5,12 @@ _letsencrypt_renew_cron_expression: "{{ letsencrypt_renew_cron_expression | defa
 _letsencrypt_renew_cron_target: "{{ letsencrypt_renew_cron_target | default('/etc/cron.d') }}"
 
 # conditionaly include apache or nginx plugin
-_letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages | distro(vars)) }}"
+_letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages) }}"
 
 _letsencrypt_apache_packages:
   - "{{ _python_prefix | distro(vars) }}-certbot-apache"
 _letsencrypt_nginx_packages:
-  RedHat:
-    - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
-  Debian: []
+  - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
 _letsencrypt_main_packages:
   RedHat:
     - cronie
@@ -28,3 +26,4 @@ _python_prefix:
   RedHat_8: python3
   RedHat: python
   Debian_9: python
+  Debian_10: python3
