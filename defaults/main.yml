@@ -30,6 +30,5 @@ _python_prefix:
   RedHat_8: python3
   RedHat: python
   Debian_9: python
-  Debian_10: python3
-  Debian_11: python3
+  Debian: python3
   Rocky_8: python3
