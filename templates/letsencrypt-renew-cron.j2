@@ -1,3 +1,4 @@
 MAILTO={{ _letsencrypt_renew_email }}
+MAILFROM={{ _letsencrypt_email_from }}
 PATH=/usr/bin:/usr/sbin
 {{ _letsencrypt_renew_cron_expression }} root {% if _letsencrypt_renew_cron_script != 'None' %}{{ _letsencrypt_renew_cron_script }}{% else %}certbot renew --quiet{% endif %}

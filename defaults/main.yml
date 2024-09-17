@@ -7,6 +7,7 @@ _letsencrypt_renew_cron_target: "{{ letsencrypt_renew_cron_target | default('/et
 _letsencrypt_renew_cron_script: "{{ letsencrypt_renew_cron_script | default('None') }}"
 _letsencrypt_renew_cron_script_pre: "{{ letsencrypt_renew_cron_script_pre }}"
 _letsencrypt_renew_cron_script_post: "{{ letsencrypt_renew_cron_script_post }}"
+_letsencrypt_email_from: "{{ letsencrypt_email_from | default('infra@kobalt.fr') }}"
 
 # conditionaly include apache or nginx plugin
 _letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages) }}"
