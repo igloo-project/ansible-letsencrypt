@@ -3,19 +3,10 @@ galaxy_info:
   author: Laurent Almeras
   description: Letsencrypt certbot and renewal.
   license: BSD
-  min_ansible_version: 2.4
-  platforms:
-    - name: EL
-      versions:
-        - 7
-    - name: Debian
-      versions:
-        - stretch
+  min_ansible_version: "2.18"
   galaxy_tags:
     - ssl
     - httpd
     - letsencrypt
 dependencies:
-  - role: geerlingguy.repo-epel
-    when: ansible_os_family == 'RedHat'
   - role: powo.utils
