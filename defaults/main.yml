@@ -10,12 +10,12 @@ _letsencrypt_renew_cron_script_post: "{{ letsencrypt_renew_cron_script_post }}"
 _letsencrypt_email_from: "{{ letsencrypt_email_from | default('infra@kobalt.fr') }}"
 
 # conditionaly include apache or nginx plugin
-_letsencrypt_packages: "{{ _letsencrypt_main_packages | distro(vars) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages) }}"
+_letsencrypt_packages: "{{ lookup('distro', _letsencrypt_main_packages) + _letsencrypt_skip_apache | ternary([], _letsencrypt_apache_packages) + _letsencrypt_skip_nginx | ternary([], _letsencrypt_nginx_packages) }}"
 
 _letsencrypt_apache_packages:
-  - "{{ _python_prefix | distro(vars) }}-certbot-apache"
+  - "{{ lookup('distro', _python_prefix) }}-certbot-apache"
 _letsencrypt_nginx_packages:
-  - "{{ _python_prefix | distro(vars) }}-certbot-nginx"
+  - "{{ lookup('distro', _python_prefix) }}-certbot-nginx"
 _letsencrypt_main_packages:
   RedHat:
     - cronie
